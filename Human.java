@@ -1,11 +1,7 @@
 
-public class Human {
+public class Human extends Character {
 	
-	private String name;
-	private String gender;
-
-	public Human(String n, String g) {
-		name = n;
-		gender = g;
+	public Human(int str, int end, int agil, int intel, int per, String name, String gender) {
+		super(str, end, agil, intel, per, name, gender);
 	}
 }
