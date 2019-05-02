@@ -15,6 +15,37 @@ public class Character
 		critMultiplier = 1.5;
 	}
 	
+	public void setHealth(int health)
+	{
+		this.health = health;
+	}
+	
+	public void setStrength(int strength)
+	{
+		this.strength = strength;
+	}
+	
+	public void setEndurance(int endurance)
+	{
+		this.endurance = endurance;
+		health = 250 + (this.endurance-1 * 5);
+	}
+	
+	public int getHealth()
+	{
+		return health;
+	}
+	
+	public int getStrength()
+	{
+		return strength;
+	}
+	
+	public int getEndurance()
+	{
+		return endurance;
+	}
+	
 	public int rollCriticalHit(int damage)
 	{
 		int roll = (int) (Math.random() * 20 + 1);
@@ -23,5 +54,13 @@ public class Character
 			return (int) (damage * critMultiplier);
 		else
 			return damage;
+	}
+	
+	public String toString()
+	{
+		String output = "";
+		output += "Name: " + health + "\nGender: " + "\nStrength: " + strength + "\nEndurance: " + endurance;
+		
+		return output;
 	}
 }
