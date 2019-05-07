@@ -1,8 +1,8 @@
 
-public class Bandit extends Human
+public class Bandit extends Characters
 {
-	public Bandit(int str, int end, int agil, int intel, int per, String name, String gender)
+	public Bandit(int str, int end, String name, String gender)
 	{
-		super(str, end, agil, intel, per, name, gender);
+		super(str, end, name);
 	}
 }
