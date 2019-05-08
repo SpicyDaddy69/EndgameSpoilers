@@ -26,7 +26,7 @@ import javafx.scene.text.*;
 
 public class ControlsMenu extends Application {
 
-	private Parent createContent() {
+	Parent createContent() {
 		Pane root = new Pane();
 
 		root.setPrefSize(1920, 1080);
@@ -133,6 +133,7 @@ public class ControlsMenu extends Application {
 			});
 			setOnMousePressed(event -> {
 				bg.setFill(Color.AZURE);
+				((Node)(event.getSource())).getScene().getWindow().hide();
 
 			});
 

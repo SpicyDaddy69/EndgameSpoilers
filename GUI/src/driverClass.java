@@ -44,8 +44,7 @@ public class driverClass extends Application {
 		title.setTranslateX(100);
 		title.setTranslateY(200);
 
-		MenuBox vbox = new MenuBox(new MenuItem("PLAY"), new MenuItem("CONTROLS"),
-				new MenuItem("EXIT"));
+		MenuBox vbox = new MenuBox(new MenuItem("PLAY"), new MenuItem("CONTROLS"), new MenuItem("EXIT"));
 		vbox.setTranslateX(250);
 		vbox.setTranslateY(325);
 
@@ -62,6 +61,10 @@ public class driverClass extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setFullScreen(true);
 		primaryStage.show();
+	}
+	
+	public void close(Stage primaryStage) throws Exception {
+		primaryStage.close();
 	}
 
 	private static class Title extends StackPane {
@@ -116,6 +119,7 @@ public class driverClass extends Application {
 			setAlignment(Pos.CENTER);
 			
 			getChildren().addAll(bg, text);
+			
 			setOnMouseEntered(event -> {
 				bg.setFill(gradient);
 				text.setFill(Color.WHITE);
@@ -128,24 +132,46 @@ public class driverClass extends Application {
 			});
 			setOnMousePressed(event -> {
 				bg.setFill(Color.AZURE);
+				
+				//Play Button
+				if(event.getSceneX() >= 250 && event.getSceneX() <= 450 && event.getSceneY() >= 325 && event.getSceneY() <= 370)
+				{
+					text.setFill(Color.RED);
+				} 
+				//Controls Button 
+				else if(event.getSceneX() >= 250 && event.getSceneX() <= 450 && event.getSceneY() > 370 && event.getSceneY() <= 415)
+				{
+					ControlsMenu cm = new ControlsMenu();
+					try {
+						cm.start(new Stage());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				//Exit Button
+				else if(event.getSceneX() >= 250 && event.getSceneX() <= 450 && event.getSceneY() > 415 && event.getSceneY() <= 460)
+				{
+					((Node)(event.getSource())).getScene().getWindow().hide();
+				}
+				
 
 			});
 
 			setOnMouseReleased(event -> {
 				bg.setFill(gradient);
+				text.setFill(Color.WHITE);
+				
 			});
 	
 		}
 		
-		public static class Controls extends StackPane {
-			
+		
+	}
+
+		public static void main(String[] args) {
+
+			launch(args);
 		}
-		
-		
-	}
-
-	public static void main(String[] args) {
-
-		launch(args);
-	}
 }
