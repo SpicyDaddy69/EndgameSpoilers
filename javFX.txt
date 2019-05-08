@@ -1,0 +1,1 @@
+http://download.eclipse.org/efxclipse/updates-released/2.3.0/site/
