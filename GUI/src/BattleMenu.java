@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.Timer;
 
 public class BattleMenu extends JDialog implements ActionListener
 {
@@ -19,6 +20,7 @@ public class BattleMenu extends JDialog implements ActionListener
 	private JLabel health2;
 	private JTextArea events;
 	private JScrollPane scroll;
+	private Timer tmr;
 	
 	public BattleMenu(int width, int height, Characters char1, Characters char2)
 	{	
@@ -31,6 +33,7 @@ public class BattleMenu extends JDialog implements ActionListener
 		attack = new JButton("Attack");
 		attack.addActionListener(this);
 		escape = new JButton("Escape");
+		escape.addActionListener(this);
 		
 		image1 = new JLabel(new ImageIcon("placeholder.png"));
 		health1 = new JLabel("Health: " + player.getHealth());
@@ -48,7 +51,7 @@ public class BattleMenu extends JDialog implements ActionListener
 		display2.add(health2, BorderLayout.CENTER);
 		display2.setBackground(Color.DARK_GRAY);
 		
-		events = new JTextArea(5, 20);
+		events = new JTextArea(3, 20);
 		events.setEditable(false);
 		events.setFont(new Font("Serif", Font.PLAIN, 20));
 		
@@ -85,7 +88,14 @@ public class BattleMenu extends JDialog implements ActionListener
 			events.append(enemyAttack.attack(1, player));
 			health2.setText("Health: " + enemy.getHealth());
 		}
-		else
-			System.out.println("You ran");
+		else if(e.getSource() == escape)
+		{
+			events.append("\nYou ran");
+			tmr = new Timer(2000, this);
+			tmr.addActionListener(this);
+			tmr.start();
+		}
+		else if(e.getSource() == tmr)
+			dispose();
 	}
 }
