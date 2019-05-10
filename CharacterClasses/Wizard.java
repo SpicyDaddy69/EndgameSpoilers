@@ -1,7 +1,7 @@
 
 public class Wizard extends Human {
 
-	public Wizard(int str, int end, String name, String gender) {
-		super(str, end, name, gender);
+	public Wizard(int str, int end, String name) {
+		super(str, end, name);
 	}
 }

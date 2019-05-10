@@ -1,8 +1,8 @@
 
-public class TreasureHunter extends Human
+public class TreasureHunter extends Characters
 {
-	public TreasureHunter(int str, int end, String name, String gender)
+	public TreasureHunter(int str, int end, String name)
 	{
-		super(str, end, name, gender);
+		super(str, end, name);
 	}
 }
