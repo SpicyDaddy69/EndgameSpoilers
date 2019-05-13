@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -137,6 +139,10 @@ public class driverClass extends Application {
 				if(event.getSceneX() >= 250 && event.getSceneX() <= 450 && event.getSceneY() >= 325 && event.getSceneY() <= 370)
 				{
 					text.setFill(Color.RED);
+					CharacterCreation start = new CharacterCreation(500,400);
+					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+					start.setLocation(dim.width/2 - start.getSize().width/2, dim.height/2 - start.getSize().height/2);
+					start.setVisible(true);
 				} 
 				//Controls Button 
 				else if(event.getSceneX() >= 250 && event.getSceneX() <= 450 && event.getSceneY() > 370 && event.getSceneY() <= 415)

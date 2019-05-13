@@ -11,6 +11,8 @@ public class BattleMenu extends JDialog implements ActionListener
 	private JPanel display1;
 	private JPanel display2;
 	private JPanel display3;
+	private JPanel names1;
+	private JPanel names2;
 	private Container contentPane;
 	private JLabel image1;
 	private JLabel image2;
@@ -18,6 +20,8 @@ public class BattleMenu extends JDialog implements ActionListener
 	private Characters player, enemy;
 	private JLabel health1;
 	private JLabel health2;
+	private JLabel name1;
+	private JLabel name2;
 	private JTextArea events;
 	private JScrollPane scroll;
 	private Timer tmr;
@@ -30,6 +34,9 @@ public class BattleMenu extends JDialog implements ActionListener
 		setTitle("Menu");
 		setSize(width, height);
 		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
+		
 		attack = new JButton("Attack");
 		attack.addActionListener(this);
 		escape = new JButton("Escape");
@@ -38,17 +45,29 @@ public class BattleMenu extends JDialog implements ActionListener
 		image1 = new JLabel(new ImageIcon("placeholder.png"));
 		health1 = new JLabel("Health: " + player.getHealth());
 		health1.setForeground(Color.GREEN);
+		name1 = new JLabel("Name: " + player.getName());
+		name1.setForeground(Color.GREEN);
+		names1 = new JPanel(new GridLayout(2,1));
 		display1 = new JPanel(new BorderLayout());
 		display1.add(image1, BorderLayout.NORTH);
-		display1.add(health1, BorderLayout.CENTER);
+		names1.add(name1);
+		names1.add(health1);
+		display1.add(names1, BorderLayout.CENTER);
+		names1.setBackground(Color.DARK_GRAY);
 		display1.setBackground(Color.DARK_GRAY);
 		
 		image2 = new JLabel(new ImageIcon("placeholder.png"));
 		health2 = new JLabel("Health: " + enemy.getHealth());
 		health2.setForeground(Color.GREEN);
+		name2 = new JLabel("Name: " + enemy.getName());
+		name2.setForeground(Color.GREEN);
+		names2 = new JPanel(new GridLayout(2,1));
 		display2 = new JPanel(new BorderLayout());
 		display2.add(image2, BorderLayout.NORTH);
-		display2.add(health2, BorderLayout.CENTER);
+		names2.add(name2);
+		names2.add(health2);
+		display2.add(names2, BorderLayout.CENTER);
+		names2.setBackground(Color.DARK_GRAY);
 		display2.setBackground(Color.DARK_GRAY);
 		
 		events = new JTextArea(3, 20);
