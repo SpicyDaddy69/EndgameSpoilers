@@ -10,7 +10,7 @@ public class Characters
 		strength = str;
 		endurance = end;
 		this.name = name;
-		health = 250 + (end-1 * 5);
+		health = 245 + (end * 5);
 		critMultiplier = 1.5;
 	}
 	
@@ -43,6 +43,11 @@ public class Characters
 	public int getEndurance()
 	{
 		return endurance;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 	
 	public int rollCriticalHit(int damage)
