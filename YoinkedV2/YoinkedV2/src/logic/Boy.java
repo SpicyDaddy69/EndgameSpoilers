@@ -10,15 +10,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-//the Monster is the main character of the game, the one you control with your arrow keys
-public class Monster {
-	public Monster(int x, int y) {
+//the boy is the main character of the game, the one you control with your arrow keys
+public class Boy {
+	public Boy() {
 		// initialize the buffers that will store the run sprites
 		run_L = new BufferedImage[BUFFER_RUN_SIZE];
 		run_R = new BufferedImage[BUFFER_RUN_SIZE];
-		
-		currentX = x;
-		currentY = y;
+
 		// load all the images
 		loadInformations();
 
@@ -27,37 +25,39 @@ public class Monster {
 
 		// initialize the bounding box of the character, this will be very important
 		// when we manage collisions between objects
-		boundingBox = new Rectangle(currentX, currentY, Monster_WIDTH, Monster_HEIGHT);
+		boundingBox = new Rectangle(currentX, currentY, BOY_WIDTH, BOY_HEIGHT);
 	}
 
 	// loads all the sprites needed to animate the character
 	private void loadInformations() {
 		try {
-			idle_R = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			idle_L = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			idle_R = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			idle_L = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
-			run_R[0] = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			run_L[0] = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			run_R[0] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			run_L[0] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
-			run_R[1] = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			run_L[1] = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			run_R[1] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			run_L[1] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
-			run_R[2] = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			run_L[2] = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			run_R[2] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			run_L[2] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
-			run_R[3] = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			run_L[3] = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			run_R[3] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			run_L[3] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
-			run_R[4] = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			run_L[4] = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			run_R[4] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			run_L[4] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
-			run_R[5] = ImageIO.read(getClass().getResource("/New Piskel.png"));
-			run_L[5] = ImageIO.read(getClass().getResource("/New Piskel.png"));
+			run_R[5] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
+			run_L[5] = ImageIO.read(getClass().getResource("/SlotMachine1.png"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
+	// function called by the GameManager's manageKeys() function
 	public void move(int direction) {
 		switch (direction) {
 		// in case you have to move left..
@@ -125,13 +125,12 @@ public class Monster {
 		}
 		moveCounter++;
 	}
-	
 
-	// sets the current frame when the Monster is moving - we have a total of 5 frames
+	// sets the current frame when the boy is moving - we have a total of 5 frames
 	// for
 	// each run direction. The variable moveCounter is incremented each time the
 	// gameManager
-	// calls the move function on the Monster. So according to moveCounter we can choose
+	// calls the move function on the Boy. So according to moveCounter we can choose
 	// the current
 	// frame. The frame changes every MOVE_COUNTER_THRESH increments of the
 	// moveCounter variable.
@@ -193,7 +192,7 @@ public class Monster {
 
 	// DISPLACEMENT is the distance is the distance covered by a single step of the
 	// character
-	private static final int DISPLACEMENT = 2;
+	private static final int DISPLACEMENT = 4;
 
 	// current frame in the animation
 	private BufferedImage currentFrame;
@@ -211,19 +210,20 @@ public class Monster {
 	private int currentFrameNumber = 0;
 
 	// the initial width offset of the character
+	public static final int BOY_START_X = 960;
 
 	// height of the main character (used to set the boundingBox)
-	private final int Monster_HEIGHT = 64;
+	private final int BOY_HEIGHT = 64;
 
 	// width of the main character (used to set the boundingBox)
-	private final int Monster_WIDTH = 40;
+	private final int BOY_WIDTH = 40;
 
 	// current position of the character along the x-axis
-	// initially the character is placed at Monster_START_X
-	private int currentX = 0;
+	// initially the character is placed at BOY_START_X
+	private int currentX = BOY_START_X;
 
 	// current position of the character along the y-axis
-	// initially the character is placed at Monster_START_X
-	private int currentY = GameFrame.HEIGHT - Monster_HEIGHT- 500;
+	// initially the character is placed at BOY_START_X
+	private int currentY = GameFrame.HEIGHT - BOY_HEIGHT- 500;
 
 }

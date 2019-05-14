@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +38,8 @@ public class PlayPanel extends JPanel {
 
 		// set a random background color to diswtinguish the play panel from the rest
 		this.setBackground(Color.BLACK);
-
+	
+		
 		this.setDoubleBuffered(true);
 
 	}
@@ -49,19 +51,23 @@ public class PlayPanel extends JPanel {
 
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[i].length; j++) {
-				if (arr[i][j] == 1) {
-					if (arr[i][j] == 1)
-						g2.drawImage(wall, x, y, null);
+				if (arr[i][j] == 1) {					
+					if(arr[i][j] == 1)
+					g2.drawImage(wall, x, y, null);
 				}
 
 				if (arr[i][j] == 0)
 					g2.drawImage(floor, x, y, null);
-
-				if (arr[i][j] == 6) {
+				
+				if(arr[i][j] == 6)
+				{
 					g2.drawImage(enemySpawn, x, y, null);
+					enemyLoc.add(x);
+					enemyLoc.add(y);
+					
 				}
-
-				if (arr[i][j] == 3)
+				
+				if(arr[i][j] == 3)
 					g2.drawImage(door, x, y, null);
 				x += 64;
 
@@ -73,13 +79,7 @@ public class PlayPanel extends JPanel {
 		y = 188;
 		// draw the protagonist of the game
 		g2.drawImage(boy.getCurrentFrame(), boy.getCurrentX(), boy.getCurrentY(), null);
-		//System.out.println(monsters);
-
-		for (int i = 0; i < monsters.size(); i++) {
-			g2.drawImage(monsters.get(i).getCurrentFrame(), monsters.get(i).getCurrentX(),
-					monsters.get(i).getCurrentY(), null);
-		}
-
+		g2.drawImage(monster.getCurrentFrame(), monster.getCurrentX(), monster.getCurrentY(), null);
 	}
 
 	public void loadInformations() {
@@ -102,17 +102,17 @@ public class PlayPanel extends JPanel {
 
 	// reference to the protagonist of the game
 	private Boy boy;
+	public void addMonster(Monster monster) {
+		this.monster = monster;
+	}
 	
-	public int[][] getRoom()
+	public ArrayList<Integer> getEnemyLoc()
 	{
-		return arr;
+		return enemyLoc;
 	}
-
 	// reference to the protagonist of the game
-	private ArrayList<Monster> monsters = new ArrayList<Monster>();
+	private Monster monster;
+	ArrayList<Integer> enemyLoc = new ArrayList<Integer>();
 
-	public void addMonsters(ArrayList<Monster> monster) {
-		monsters = monster;
-	}
-
+	
 }

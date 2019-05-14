@@ -15,7 +15,4 @@ public class Main {
 		// start-up the game main frame
 		GameFrame gameFrame = new GameFrame(gamePanel);
 	}
-	
-			
-	
 }

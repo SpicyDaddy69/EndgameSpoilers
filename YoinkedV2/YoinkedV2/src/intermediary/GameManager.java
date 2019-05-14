@@ -14,8 +14,7 @@ import gui.GamePanel;
 //pressed, associating them to actual actions 
 public class GameManager extends Thread {
 	public GameManager(GamePanel gamePanel) {
-		int x = 608;
-		int y = 188;
+
 		// initialize the protagonist of the game
 		this.boy = new Boy();
 		// stores the gamePanel and adds the boy to it
@@ -24,37 +23,17 @@ public class GameManager extends Thread {
 
 		// while you're playing the game, the gameIsRunning is set to true
 		this.gameIsRunning = true;
+		this.gamePanel.addMonster(monster);
 		
-		this.enemyLoc = new ArrayList<Integer>();
-		this.room = gamePanel.getPlayPanel().getRoom();
-		
-		for(int rows = 0; rows < this.room.length; rows++)
-		{
-			for(int cols = 0; cols <  this.room[rows].length; cols++)
-			{
-				if(this.room[rows][cols] == 6)
-				{
-					this.enemyLoc.add(x);
-					this.enemyLoc.add(y);
-				}
-				x += 64;
-			}
-			x = 608;
-			y += 64;
-		}
-		x = 608;
-		y = 188;
-		
-		this.monsters = new ArrayList<Monster>();
+		enemyLoc = gamePanel.getPlayPanel().getEnemyLoc();
+		monsters = new ArrayList<Monster>();
 		
 		for(int i = 0; i < enemyLoc.size() / 2; i++)
 		{
 			this.monster = new Monster(enemyLoc.get(i * 2), enemyLoc.get((i * 2) + 1));
-			this.monsters.add(this.monster);
-
+			monsters.add(this.monster);
+			this.gamePanel.addMonster(monster);
 		}
-		System.out.println(monsters);
-		this.gamePanel.addMonsters(monsters);
 	}
 
 	@Override
@@ -111,17 +90,17 @@ public class GameManager extends Thread {
 			if (boy.getCurrentX() > minXValue && boy.getCurrentX() < maxXValue && boy.getCurrentY() > minYValue
 					&& boy.getCurrentY() < maxYValue)
 				boy.move(KeyEvent.VK_D);
-		}if (currentKeys.contains(KeyEvent.VK_A)) {
+		} else if (currentKeys.contains(KeyEvent.VK_A)) {
 			// move left
 			if (boy.getCurrentX() > minXValue && boy.getCurrentX() < maxXValue && boy.getCurrentY() > minYValue
 					&& boy.getCurrentY() < maxYValue)
 				boy.move(KeyEvent.VK_A);
-		}if (currentKeys.contains(KeyEvent.VK_W)) {
+		} else if (currentKeys.contains(KeyEvent.VK_W)) {
 			// move left
 			if (boy.getCurrentX() > minXValue && boy.getCurrentX() < maxXValue && boy.getCurrentY() > minYValue
 					&& boy.getCurrentY() < maxYValue)
 				boy.move(KeyEvent.VK_W);
-		}if (currentKeys.contains(KeyEvent.VK_S)) {
+		} else if (currentKeys.contains(KeyEvent.VK_S)) {
 			// move left
 			if (boy.getCurrentX() > minXValue && boy.getCurrentX() < maxXValue && boy.getCurrentY() > minYValue
 					&& boy.getCurrentY() < maxYValue)
@@ -129,7 +108,7 @@ public class GameManager extends Thread {
 					boy.stop();
 				else
 					boy.move(KeyEvent.VK_S);
-		}if (currentKeys.isEmpty()) {
+		} else if (currentKeys.isEmpty()) {
 			// if the player is not pressing keys, the protagonist stands still
 			boy.stop();
 		}
@@ -140,6 +119,9 @@ public class GameManager extends Thread {
 		return boy;
 	}
 
+	public Monster getMonster(int indexOfMonster) {
+		return monsters.get(indexOfMonster);
+	}
 
 	// variable set to 'true' if the game is running, 'false' otherwise
 	private boolean gameIsRunning;
@@ -157,7 +139,6 @@ public class GameManager extends Thread {
 	private Monster monster;
 	private ArrayList<Monster> monsters;
 	private ArrayList<Integer> enemyLoc;
-	private int[][] room;
 
 	private int minXValue = 672;
 	private int maxXValue = 1208;

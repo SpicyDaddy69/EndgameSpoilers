@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -30,9 +29,10 @@ public class GamePanel extends JPanel {
 		this.addKeyListener(keyboardController);
 
 	}
-	public void addMonsters(ArrayList<Monster> monster)
+	public void addMonster(Monster monster)
 	{
-		playPanel.addMonsters(monster);
+		this.monster = monster;
+		playPanel.addMonster(monster);
 	}
 
 	public void addBoy(Boy boy) {
@@ -57,5 +57,4 @@ public class GamePanel extends JPanel {
 	@SuppressWarnings("unused")
 	private Boy boy;
 	private Monster monster;
-	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 }
