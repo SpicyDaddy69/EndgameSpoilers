@@ -1,16 +1,14 @@
 
 public class Characters
 {
-	protected int strength, endurance, health;
+	protected int health;
 	protected String name;
 	protected double critMultiplier;
 	
-	public Characters(int str, int end, String name)
+	public Characters(String name)
 	{
-		strength = str;
-		endurance = end;
 		this.name = name;
-		health = 245 + (end * 5);
+		health = 50;
 		critMultiplier = 1.5;
 	}
 	
@@ -19,30 +17,9 @@ public class Characters
 		this.health = health;
 	}
 	
-	public void setStrength(int strength)
-	{
-		this.strength = strength;
-	}
-	
-	public void setEndurance(int endurance)
-	{
-		this.endurance = endurance;
-		health = 250 + (this.endurance-1 * 5);
-	}
-	
 	public int getHealth()
 	{
 		return health;
-	}
-	
-	public int getStrength()
-	{
-		return strength;
-	}
-	
-	public int getEndurance()
-	{
-		return endurance;
 	}
 	
 	public String getName()
@@ -60,11 +37,4 @@ public class Characters
 			return damage;
 	}
 	
-	public String toString()
-	{
-		String output = "";
-		output += "Name: " + health + "\nGender: " + "\nStrength: " + strength + "\nEndurance: " + endurance;
-		
-		return output;
-	}
 }
