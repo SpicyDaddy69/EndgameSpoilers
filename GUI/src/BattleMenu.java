@@ -95,17 +95,30 @@ public class BattleMenu extends JDialog implements ActionListener
 		contentPane.add(display3, BorderLayout.CENTER);
 	}
 		
-	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == attack)
 		{
 			BattleMechanics playerAttack = new BattleMechanics(player);
 			BattleMechanics enemyAttack = new BattleMechanics(enemy);
-			events.append(playerAttack.attack(1, enemy));
+			events.append(playerAttack.attack(40, enemy));
 			health1.setText("Health: " + player.getHealth());
-			events.append(enemyAttack.attack(1, player));
+			events.append(enemyAttack.attack(40, player));
 			health2.setText("Health: " + enemy.getHealth());
+			if(player.getHealth() <= 0)
+			{
+				events.append("You won");
+				tmr = new Timer(2000, this);
+				tmr.addActionListener(this);
+				tmr.start();
+			}
+			else if(enemy.getHealth() <= 0)
+			{
+				events.append("You died lol");
+				tmr = new Timer(2000, this);
+				tmr.addActionListener(this);
+				tmr.start();
+			}
 		}
 		else if(e.getSource() == escape)
 		{
